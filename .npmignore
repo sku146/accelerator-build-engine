@@ -1,0 +1,25 @@
+cli/
+IE8/
+src/
+__temp__/
+specs/
+coverage/
+dist/
+dist-release/
+.git/
+jest_ykmxi4/
+.nyc_output/
+docs/
+jest/
+conf.json
+.eslintrc
+.eslintignore
+.gitignore
+.npmignore
+node_modules
+npm-debug.log
+.DS_Store
+
+# SONAR IGNORE
+*.properties
+.sonar

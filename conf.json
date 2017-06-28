@@ -1,0 +1,31 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": [
+      "src/"
+    ],
+    "includePattern": ".+\\.js(doc)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": [],
+  "opts": {
+    "template": "node_modules/ink-docstrap/template",
+    "encoding": "utf8",
+    "destination": "docs/",
+    "recurse": true
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": true
+    },
+    "systemName": "Accelerator Build Engine",
+    "theme": "paper",
+    "linenums": true,
+    "collapseSymbols": false,
+    "inverseNav": true
+  }
+}

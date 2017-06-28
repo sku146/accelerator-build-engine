@@ -1,0 +1,20 @@
+node_modules/
+coverage/
+lib/
+dist/
+jest/
+jest_0/
+jest_ykmxi4/
+dist-release/
+.nyc_output
+.DS_Store
+.sass-cache
+*.map
+.idea
+*.log
+*.iml
+junitresults.xml
+
+# SONAR IGNORE
+*.properties
+.sonar

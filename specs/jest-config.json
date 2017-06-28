@@ -1,0 +1,28 @@
+{
+  "roots": [
+    "specs/"
+  ],
+  "verbose": true,
+  "collectCoverage": true,
+  "coverageReporters": [
+    "json",
+    "lcov",
+    "text",
+    "text-summary"
+  ],
+  "coveragePathIgnorePatterns": [
+    "/__temp__/"
+  ],
+  "modulePathIgnorePatterns": [
+  ],
+  "testPathIgnorePatterns": [
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 90,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  }
+}

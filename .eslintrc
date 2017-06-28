@@ -1,0 +1,6 @@
+{
+  "extends":[
+    "accelerator/node",
+    "accelerator/lodash"
+  ]
+}

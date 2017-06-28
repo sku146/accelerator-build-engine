@@ -1,0 +1,89 @@
+{
+  "name": "accelerator-build-engine",
+  "version": "1.0.0",
+  "description": "React Application Project Webpack 2 build engine",
+  "main": "lib/index.js",
+  "scripts": {
+    "source": "rimraf ./lib && babel src --out-dir lib -s",
+    "cli": "babel cli/index.js > index.js",
+    "build": "npm run source && npm run cli",
+    "engine:lint": "eslint 'src/**/*.js' -f table --fix",
+    "test:lint": "eslint -c specs/.eslintrc 'specs/**/*.spec.js' -f table --no-eslintrc",
+    "test:watch": "jest --config=specs/jest-config.json --watch",
+    "test": "exit 0",
+    "lint": "npm run engine:lint && npm run test:lint",
+    "posttest": "npm run build",
+    "prepublish": "npm run test",
+    "doc": "jsdoc -c conf.json -R README.md"
+  },
+  "precommit": [
+    "test",
+    "build"
+  ],
+  "keywords": [
+    "Webpack 2",
+    "Application",
+    "Accelerator",
+    "React",
+    "Build",
+    "Engine"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sku146/babel-preset-accelerator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sku146/babel-preset-accelerator/issues",
+    "email": "skumar146@sapient.com"
+  },
+  "author": {
+    "name": "sku146",
+    "email": "skumar146@sapient.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "dependencies": {
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.1.0",
+    "babel-preset-accelerator": "^1.0.0",
+    "babel-watch": "^2.0.6",
+    "babelify": "^7.3.0",
+    "chalk": "^1.1.3",
+    "commander": "^2.10.0",
+    "cross-env": "^5.0.1",
+    "cross-spawn": "^5.1.0",
+    "css-loader": "^0.28.4",
+    "eslint-config-accelerator": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
+    "http-server": "^0.10.0",
+    "ink-docstrap": "^1.3.0",
+    "jest": "^19.0.2",
+    "jsdoc": "^3.4.3",
+    "lodash": "^4.17.4",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.6",
+    "pre-commit": "^1.2.2",
+    "react-addons-test-utils": "^15.6.0",
+    "resolve-url-loader": "^2.1.0",
+    "rimraf": "^2.6.1",
+    "sass-lint": "^1.10.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0",
+    "webpack-merge": "^4.1.0",
+    "npm-check": "^5.4.4"
+  },
+  "devDependencies": {
+    "mock-fs": "^4.4.1"
+  },
+  "bin": {
+    "build-engine": "./index.js"
+  }
+}
