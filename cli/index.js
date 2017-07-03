@@ -10,7 +10,7 @@ import {
 } from './lib/webpack';
 
 const currentNodeVersion = process.versions.node;
-if (currentNodeVersion.split('.')[0] < 4) {
+if (currentNodeVersion.split('.')[0] < 6) {
   console.error(chalk.white.bgRed(MSG.NODE()(currentNodeVersion)));
   process.exit(1);
 }

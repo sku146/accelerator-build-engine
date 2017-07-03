@@ -19,6 +19,7 @@ import {
 } from '../constants';
 import {
   isValidTask,
+  validateLintExecute,
   exitError,
   exec,
   series,
@@ -65,16 +66,18 @@ const getBuildCommand = (program = {}, dirName = '') => {
   return split(CLI_COMMAND.build()(dirName, `./${output.root}`), '&&');
 };
 
+const getStyleLintTask = () => ({
+  command: CLI_COMMAND.styleLint()(),
+  msg: MSG.LINT()('style'),
+});
+
 const getEslintTask = (items = [], key = '') => map(items, (item) => {
   const lints = {
     test: {
       command: CLI_COMMAND.eslintTest()(item),
       msg: MSG.LINT()('test'),
     },
-    style: {
-      command: CLI_COMMAND.lintStyle,
-      msg: MSG.LINT()('style'),
-    },
+    style: getStyleLintTask(),
   };
   return lints[key] || { command: CLI_COMMAND.eslint()(item), msg: MSG.LINT()(key) };
 });
@@ -84,24 +87,24 @@ const getEslintTasks = (configs = {}) => {
   if (isEmpty(scopeConfigs)) {
     return MSG.LINT_EMPTY;
   }
-  scopeConfigs.style = ['including style task into all eslint'];
+  scopeConfigs.style = ['including style task into all lint'];
   return flattenDeep(map(scopeConfigs, (config, key) => getEslintTask(config, key)));
 };
 
 const getLintCommand = (program = {}) => {
-  if (program.lint === DEFAULT_VALUE.LINT) {
-    const styleLint = isValidTask('style');
-    if (styleLint && !styleLint.status) {
-      exitError(styleLint.msg);
-    }
-  }
-
+  const lintTask = (program.lint === DEFAULT_VALUE.LINT) ? [
+    'configs',
+    'base',
+    'test',
+    'style',
+  ] : [program.lint];
+  validateLintExecute(lintTask);
   const lints = {
     all: getEslintTasks(eslintConfig),
-    configs: getEslintTask(eslintConfig.configs, 'configs'),
-    base: getEslintTask(eslintConfig.base, 'base'),
-    test: getEslintTask(eslintConfig.test, 'test'),
-    style: CLI_COMMAND.lintStyle,
+    configs: getEslintTask(eslintConfig.configs || [], 'configs'),
+    base: getEslintTask(eslintConfig.base || [], 'base'),
+    test: getEslintTask(eslintConfig.test || [], 'test'),
+    style: getStyleLintTask(),
   };
   return lints[program.lint] || lints[DEFAULT_VALUE.LINT];
 };

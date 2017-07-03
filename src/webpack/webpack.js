@@ -8,6 +8,7 @@ import forEach from 'lodash/forEach';
 import split from 'lodash/split';
 import isPlainObject from 'lodash/isPlainObject';
 import isFunction from 'lodash/isFunction';
+import indexOf from 'lodash/indexOf';
 import spawn from 'cross-spawn';
 import {
   CLI_PATH,
@@ -152,6 +153,19 @@ const isValidTask = (task = '') => {
   return taskFn();
 };
 
+const validateLintExecute = (tasks = []) => {
+  if (isEmpty(tasks)) {
+    exitError(MSG.FAIL.msg);
+  }
+  forEach(tasks, (task) => {
+    const lint = (indexOf(CLI_PATH.VALIDATE.eslintTasks, task)) ? 'eslint' : task;
+    const lintTask = isValidTask(lint);
+    if (lintTask && !lintTask.status) {
+      exitError(lintTask.msg);
+    }
+  });
+};
+
 const getCompileTask = (dirPath = '') => {
   if (isEmpty(dirPath)) {
     return MSG.NOT_FIND;
@@ -164,6 +178,7 @@ export default {
   exitError,
   isValidDirPath,
   isValidFilePath,
+  validateLintExecute,
   validateDirs,
   validateFiles,
   isValidExecute,
