@@ -1,6 +1,6 @@
 {
   "name": "accelerator-build-engine",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Application Project Webpack 2 build engine",
   "main": "lib/index.js",
   "scripts": {
@@ -30,10 +30,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/sku146/babel-preset-accelerator.git"
+    "url": "https://github.com/sku146/accelerator-build-engine.git"
   },
   "bugs": {
-    "url": "https://github.com/sku146/babel-preset-accelerator/issues",
+    "url": "https://github.com/sku146/accelerator-build-engine/issues",
     "email": "skumar146@sapient.com"
   },
   "author": {

@@ -71,9 +71,9 @@ const getEslintTask = (items = [], key = '') => map(items, (item) => {
       command: CLI_COMMAND.eslintTest()(item),
       msg: MSG.LINT()('test'),
     },
-    sass: {
-      command: CLI_COMMAND.eslintSass,
-      msg: MSG.LINT()('sass'),
+    style: {
+      command: CLI_COMMAND.lintStyle,
+      msg: MSG.LINT()('style'),
     },
   };
   return lints[key] || { command: CLI_COMMAND.eslint()(item), msg: MSG.LINT()(key) };
@@ -84,23 +84,24 @@ const getEslintTasks = (configs = {}) => {
   if (isEmpty(scopeConfigs)) {
     return MSG.LINT_EMPTY;
   }
-  scopeConfigs.sass = ['including sass task into all eslint'];
+  scopeConfigs.style = ['including style task into all eslint'];
   return flattenDeep(map(scopeConfigs, (config, key) => getEslintTask(config, key)));
 };
 
 const getLintCommand = (program = {}) => {
   if (program.lint === DEFAULT_VALUE.LINT) {
-    const sassResult = isValidTask('sass');
-    if (sassResult && !sassResult.status) {
-      exitError(sassResult.msg);
+    const styleLint = isValidTask('style');
+    if (styleLint && !styleLint.status) {
+      exitError(styleLint.msg);
     }
   }
+
   const lints = {
     all: getEslintTasks(eslintConfig),
     configs: getEslintTask(eslintConfig.configs, 'configs'),
     base: getEslintTask(eslintConfig.base, 'base'),
     test: getEslintTask(eslintConfig.test, 'test'),
-    sass: CLI_COMMAND.eslintSass,
+    style: CLI_COMMAND.lintStyle,
   };
   return lints[program.lint] || lints[DEFAULT_VALUE.LINT];
 };

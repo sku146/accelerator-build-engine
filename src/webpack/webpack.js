@@ -143,7 +143,8 @@ const isValidTask = (task = '') => {
     return MSG.FAIL;
   }
   const tasks = {
-    sass: () => validateFiles([CLI_PATH.SASS_LINT_CONFIG_PATH]),
+    eslint: () => validateFiles([CLI_PATH.ESLINT_CONFIG_PATH]),
+    style: () => validateFiles([CLI_PATH.STYLE_CONFIG_PATH]),
     test: () => validateFiles([CLI_PATH.TEST_CONFIG_PATH]),
     doc: () => validateFiles([CLI_PATH.TECH_DOC_PATH]),
   };

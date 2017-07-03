@@ -13,8 +13,8 @@ exports['default'] = {
   favIcon: './src/assets/icons/favicon.ico',
   brandProperties: {
     'default': {
-      title: 'React Application Accelerator Project',
-      brandName: 'React Application',
+      title: 'React Application Accelerator',
+      brandName: '',
       basePath: '/',
       brandHome: 'http://localhost:9001/',
       brandPrivacy: 'http://localhost:9001/'

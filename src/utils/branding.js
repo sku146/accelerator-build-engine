@@ -112,6 +112,9 @@ const getExtractTextSass = (env = ENV.DEV, journey = '') => {
   }
   const configs = getEnvConfig(env);
   const styleOutputPath = getStyleOutputPath(getFolderFilePath(env, journey))[0];
+  if (isEmpty(styleOutputPath)) {
+    return [];
+  }
   const sName = (env === ENV.PROD && !configs.noHash) ? `${styleOutputPath.path}.[chunkhash]` : `${styleOutputPath.path}`;
   return [new ExtractTextPlugin({
     filename: `${sName}.css`,
@@ -135,7 +138,6 @@ const getOutput = (env = ENV.DEV, journey = '', brand = '') => {
 
 const getEntry = (env = ENV.DEV, journey = '', brand = '') => {
   const paths = getOutputPath(getFolderFilePath(env, journey));
-  const styleRef = [getEntryValue(env, 'styles', brand, journey)];
   const entries = {};
   forEach(paths, (prop, idx) => {
     let value = getEntryValue(env, prop.ref, brand, journey);
@@ -143,7 +145,6 @@ const getEntry = (env = ENV.DEV, journey = '', brand = '') => {
     if (!idx) {
       value = [
         ...value,
-        ...styleRef,
       ];
     }
     entries[prop.path] = value;

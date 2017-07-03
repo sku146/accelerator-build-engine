@@ -7,11 +7,7 @@ exports['default'] = {
   appJourney: {
     entry: {
       app: ['./src/journeys/appJourney/app.mount.jsx'],
-      styles: {
-        lloyds: './src/sass/layouts/appJourney/lloyds.scss',
-        bos: './src/sass/layouts/appJourney/bos.scss',
-        halifax: './src/sass/layouts/appJourney/halifax.scss'
-      }
+      styles: './src/sass/layouts/appJourney/react-application.scss'
     },
     output: {
       foldersFilesMap: {
