@@ -1,6 +1,6 @@
 {
   "name": "accelerator-build-engine",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React Application Project Webpack 2 build engine",
   "main": "lib/index.js",
   "scripts": {
