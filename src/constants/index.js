@@ -27,8 +27,8 @@ export const stringTemplate = (strings, ...keys) => ((...values) => {
 export const MSG = {
   folder: () => stringTemplate`"${0}" folder is missing in your project.`,
   file: () => stringTemplate`"${0}" file is missing in your project.`,
-  NODE: () => stringTemplate`You are running Node ${0}. \nReact Application Accelerator requires Node 4 or higher. \nPlease update your version of Node.`,
-  HNODE: () => stringTemplate`You are running Node ${0}. \nMay be some functionality doesn't works in React Application Accelerator. \nReact Application Accelerator was tested in 4.x, 5.x and 6.x Node versions.`,
+  NODE: () => stringTemplate`You are running Node ${0}. \nReact Application Accelerator requires Node 6 or higher. \nPlease update your version of Node.`,
+  HNODE: () => stringTemplate`You are running Node ${0}. \nMay be some functionality doesn't works in React Application Accelerator. \nReact Application Accelerator was tested in 6.x Node version.`,
   COMMAND: () => stringTemplate`${0} ${1} failed.`,
   SCOUT: () => stringTemplate`${0} release bundle scout server STARTED...`,
   LINT: () => stringTemplate`${0} lint results`,
@@ -36,6 +36,7 @@ export const MSG = {
   FAIL: { status: false, msg: 'Root config folder/file has modified, Please re-install the build-engine module.' },
   NOT_FIND: 'echo Unable to find the root path.',
   LINT_EMPTY: 'echo Eslint config is empty.',
+  STYLE_LINT_EMPTY: 'echo Style lint config is empty.',
 };
 
 export const CLI_PATH = {
@@ -45,8 +46,6 @@ export const CLI_PATH = {
       `${process.cwd()}/configs`,
     ],
     files: [
-
-
       `${process.cwd()}/configs/engine/webpack.prod.config.js`,
       `${process.cwd()}/configs/engine/webpack.dev.server.config.js`,
       `${process.cwd()}/configs/engine/webpack.dev.config.js`,
@@ -54,14 +53,18 @@ export const CLI_PATH = {
       `${process.cwd()}/configs/engine/development.config.js`,
       `${process.cwd()}/configs/engine/common.config.js`,
     ],
+    eslintTasks: [
+      'configs',
+      'base',
+      'test',
+    ],
   },
   CONFIG_LOCAL_PATH: '__temp__',
   RELEASE_PATH: 'content/',
   TEST_CONFIG_PATH: `${process.cwd()}/configs/engine/jest.config.json`,
   TECH_DOC_PATH: `${process.cwd()}/configs/engine/conf.json`,
   ESLINT_CONFIG_PATH: `${process.cwd()}/configs/engine/eslint.config.js`,
-  STYLE_CONFIG_PATH: `${process.cwd()}/configs/engine/style.config.js`,
-  NODE_BIN: './node_modules/.bin/',
+  STYLE_CONFIG_PATH: `${process.cwd()}/.sass-lint.yml`,
 };
 
 export const CLI_COMMAND = {
@@ -70,7 +73,8 @@ export const CLI_COMMAND = {
   server: () => stringTemplate`./node_modules/.bin/cross-env node ${0}/lib/webpack/webpack-dev-server.js`,
   release: () => stringTemplate`./node_modules/.bin/rimraf ${1}&&./node_modules/.bin/cross-env ./node_modules/.bin/webpack --config ${0}/lib/webpack/webpack.prod.config.js`,
   eslint: () => stringTemplate`./node_modules/.bin/eslint ${0} -f table --fix`,
-  eslintReport: ()=> stringTemplate`./node_modules/.bin/eslint ${0} -f checkstyle > checkstyle-result.xml`,
+  eslintReport: () => stringTemplate`./node_modules/.bin/eslint ${0} -f checkstyle > checkstyle-result.xml`,
+  styleLint: () => stringTemplate`./node_modules/.bin/sass-lint -v -q`,
   eslintTest: () => stringTemplate`./node_modules/.bin/eslint -c specs/.eslintrc ${0} -f table --fix --no-eslintrc`,
   scout: () => stringTemplate`./node_modules/.bin/http-server ${0} -p ${1}`,
   test: './node_modules/.bin/jest --config=configs/engine/jest.config.json',

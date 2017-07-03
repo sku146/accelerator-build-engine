@@ -6,8 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports['default'] = {
   appJourney: {
     entry: {
-      app: ['./src/journeys/appJourney/app.mount.jsx'],
-      styles: './src/sass/layouts/appJourney/react-application.scss'
+      app: ['./src/journeys/appJourney/app.mount.jsx']
     },
     output: {
       foldersFilesMap: {

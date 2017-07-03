@@ -20,7 +20,7 @@ var _package2 = _interopRequireDefault(_package);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 const currentNodeVersion = process.versions.node;
-if (currentNodeVersion.split('.')[0] < 4) {
+if (currentNodeVersion.split('.')[0] < 6) {
   console.error(_chalk2['default'].white.bgRed(_constants.MSG.NODE()(currentNodeVersion)));
   process.exit(1);
 }
@@ -43,7 +43,7 @@ process.env.NODE_ENV = process.env.BABEL_ENV = _constants.ENV.COMPILE;
     process.exit(1);
   }
 
-  _commander2['default'].version(_package2['default'].version).option('-s, --server', 'Execute development webpack server').option('-b, --build [build]', 'Execute specific (development|production) webpack build task (default: development)', /^(development|production)$/i, 'development').option('-l, --lint [lint]', 'Execute specific (all|configs|base|test|sass) eslint task(s) (default: all)', /^(all|configs|base|test|sass)$/i, 'all').option('-t, --test [test]', 'Execute specific (unit|watch|watchAll) unit & coverage test task(s)  (default: unit)', /^(unit|watch|watchAll)$/i, 'unit').option('-c, --scout [scout]', 'Execute specific Journey and Brand release bundle scout').option('-d, --doc', 'Execute technicial document generator').parse(process.argv);
+  _commander2['default'].version(_package2['default'].version).option('-s, --server', 'Execute development webpack server').option('-b, --build [build]', 'Execute specific (development|production) webpack build task (default: development)', /^(development|production)$/i, 'development').option('-l, --lint [lint]', 'Execute specific (all|configs|base|test|style) lint task(s) (default: all)', /^(all|configs|base|test|style)$/i, 'all').option('-t, --test [test]', 'Execute specific (unit|watch|watchAll) unit & coverage test task(s)  (default: unit)', /^(unit|watch|watchAll)$/i, 'unit').option('-c, --scout [scout]', 'Execute specific Journey and Brand release bundle scout').option('-d, --doc', 'Execute technicial document generator').parse(process.argv);
 
   const executor = require('./lib/webpack/executor');
   const args = process.argv.slice(2);
